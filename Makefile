@@ -3,6 +3,17 @@ CPPFLAGS = -std=c++14 -Iinclude
 LDFLAGS = -lgtest -lpthread
 
 LINK_LIST_NODE = 0
+LINK_TREE_NODE = 0
+
+LINK_FILE_LIST =
+
+ifeq ($(LINK_LIST_NODE), 1)
+	LINK_FILE_LIST += src/list_node.cpp
+endif
+
+ifeq ($(LINK_TREE_NODE), 1)
+	LINK_FILE_LIST += src/tree_node.cpp
+endif
 
 .PHONY: all
 all:
@@ -10,8 +21,4 @@ all:
 	@echo "Example: make two_sum"
 
 %: ./test/test_%.cpp ./src/%.cpp
-ifeq ($(LINK_LIST_NODE), 1)
-	$(CPP) $(CPPFLAGS) -o test_$@.out $^ src/list_node.cpp ${LDFLAGS}
-else
-	$(CPP) $(CPPFLAGS) -o test_$@.out $^ ${LDFLAGS}
-endif
+	$(CPP) $(CPPFLAGS) -o test_$@.out $^ ${LINK_FILE_LIST} ${LDFLAGS}
