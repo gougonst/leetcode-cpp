@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "implement_queue_using_stacks.h"
 
-TEST(Solution, test1) {
+TEST(MyQueue, test1) {
     MyQueue queue;
     queue.push(1);
     queue.push(2);
@@ -9,7 +9,7 @@ TEST(Solution, test1) {
     EXPECT_EQ(queue.peek(), 1);
 }
 
-TEST(Solution, test2) {
+TEST(MyQueue, test2) {
     MyQueue queue;
     queue.push(1);
     queue.push(2);
@@ -18,7 +18,7 @@ TEST(Solution, test2) {
     EXPECT_EQ(queue.pop(), 1);
 }
 
-TEST(Solution, test3) {
+TEST(MyQueue, test3) {
     MyQueue queue;
     queue.push(1);
     queue.push(2);
@@ -28,7 +28,7 @@ TEST(Solution, test3) {
     EXPECT_FALSE(queue.empty());
 }
 
-TEST(Solution, test4) {
+TEST(MyQueue, test4) {
     MyQueue queue;
     queue.push(1);
     queue.push(2);
