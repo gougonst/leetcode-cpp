@@ -12,7 +12,7 @@ int Solution::myAtoi(string s) {
     }
 
     if (idx < n && s[idx] == '-') {
-        sign = 0;
+        sign = -1;
         idx++;
     }
     else if (idx < n && s[idx] == '+') {
@@ -22,8 +22,8 @@ int Solution::myAtoi(string s) {
     while (idx < n && isdigit(s[idx])) {
         int digit = s[idx] - '0';
         if (result > INT_MAX / 10 ||
-            result == INT_MAX && digit > INT_MAX % 10) {
-            return sign ? INT_MAX : INT_MIN;
+            result == INT_MAX / 10 && digit > INT_MAX % 10) {
+            return sign == 1 ? INT_MAX : INT_MIN;
         }
         result = result * 10 + digit;
         idx++;
