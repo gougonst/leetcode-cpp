@@ -10,7 +10,7 @@ bool Solution::exist(vector<vector<char>>& board, string word) {
     this->_width = board[0].size();
     for (int r = 0; r < this->_height; r++) {
         for (int c = 0; c < this->_width; c++) {
-            if (_dfs({r, c}, 1))
+            if (_dfs({r, c}, 0))
                 return true;
         }
     }
