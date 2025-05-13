@@ -44,7 +44,7 @@ Node* Solution::cloneGraphBFS(Node* node) {
     return *newRoot;
 }
 
-Node* Solution::cloneGraphDFS(Node* node) {
+Node* Solution::cloneGraphDFS1(Node* node) {
     if (!node)
         return nullptr;
 
@@ -52,18 +52,39 @@ Node* Solution::cloneGraphDFS(Node* node) {
     return _dfs(node, visited);
 }
 
-Node* Solution::_dfs(Node* node, unordered_map<Node*, Node*> &visited) {
+Node* Solution::_dfs1(Node* node, unordered_map<Node*, Node*> &visited) {
     Node* newNode = new Node(node->val);
     visited[node] = newNode;
 
     for (auto& neighbor: node->neighbors) {
         if (!visited.count(neighbor))
-            newNode->neighbors.push_back(_dfs(neighbor, visited));
+            newNode->neighbors.push_back(_dfs1(neighbor, visited));
         else
             newNode->neighbors.push_back(visited[neighbor]);
     }
 
     return newNode;
+}
+
+Node* Solution::cloneGraphDFS2(Node* node) {
+    if (!node)
+        return nullptr;
+
+    unordered_map<Node*, Node*> visited;
+    _dfs(node, visited);
+    return visited[node];
+}
+
+void Solution::_dfs2(Node* cur, unordered_map<Node*, Node*>& visited) {
+    if (visited.find(cur) != visited.end())
+        return;
+
+    Node* newNode = new Node(cur->val);
+    visited[cur] = newNode;
+    for (auto& neighbor: cur->neighbors) {
+        _dfs2(neighbor, visited);
+        newNode->neighbors.push_back(visited[neighbor]);
+    }
 }
 
 void printGraph(Node* node) {
